@@ -80,8 +80,7 @@ export const company = [
   { id: 5, icon: SiShopify, title: "Shopify" },
 ];
 
-// src/constants/data.js
-
+//
 export const benefits = [
   {
     title: "Demonstrate Your React competency",

@@ -243,23 +243,37 @@ export default function Level() {
         Choose Your <span className="text-cyan-400">Level</span>
       </h1>
 
-      <div className="flex flex-col sm:flex-row w-full sm:w-[80%] bg-gray-700 rounded-full text-2xl sm:text-3xl font-bold overflow-hidden mb-5 h-14 sm:h-16">
-        {["junior", "mid", "senior"].map((lvl) => (
-          <button
-            key={lvl}
-            className={`flex-1 font-semibold transition-colors h-full ${
-              selected === lvl ? "rounded-full" : ""
-            }`}
-            style={{
-              backgroundColor: selected === lvl ? colors[lvl] : "transparent",
-            }}
-            onClick={() => setSelected(lvl)}
-          >
-            {lvl === "mid"
-              ? "Mid-Level"
-              : lvl.charAt(0).toUpperCase() + lvl.slice(1)}
-          </button>
-        ))}
+      {/* ---------- LEVEL SELECTOR (responsive tweaks only) ---------- */}
+      <div
+        className="flex flex-col sm:flex-row w-full sm:w-[80%] bg-gray-700 rounded-full text-2xl sm:text-3xl font-bold overflow-hidden mb-5"
+        style={{ minHeight: 0 }}
+      >
+        {["junior", "mid", "senior"].map((lvl) => {
+          const isSelected = selected === lvl;
+          return (
+            <button
+              key={lvl}
+              onClick={() => setSelected(lvl)}
+              className={`
+                flex-1 font-semibold transition-colors
+                h-12 sm:h-16
+                flex items-center justify-center
+                px-3
+                text-sm sm:text-base
+                ${isSelected ? "sm:rounded-full rounded-md" : "rounded-none"}
+              `}
+              style={{
+                backgroundColor: isSelected ? colors[lvl] : "transparent",
+                // ensure visible text contrast when selected
+                color: isSelected ? "#000" : "#fff",
+              }}
+            >
+              {lvl === "mid"
+                ? "Mid-Level"
+                : lvl.charAt(0).toUpperCase() + lvl.slice(1)}
+            </button>
+          );
+        })}
       </div>
 
       <p className="text-gray-400 px-2 sm:px-4 w-full sm:w-[65%] text-sm sm:text-base">
